@@ -10,30 +10,29 @@ using namespace std;
 const int maxVertices=20000;
 
 
-int main(){
+void graph_init(){
 	//calculate the reference number of every article
-	fstream doc("link.txt");
+	fstream link("link.txt");
 	Graph ref(maxVertices);
 	string line;//store every line in "link.txt"
 	//construct the reference graph
-	while(getline(doc,line)){
-		int vertex;
-		int num;
+	while(getline(link,line)){
+		int vertex;//store the serial number of the article
+		int num;//store the number the article is referred to
 		stringstream linestream(line);
 		linestream.ignore();
-		linestream.ignore();
+		linestream.ignore();//ignore the 2 #
 		linestream>>vertex;
 		assert(ref.insertVertex(vertex)==true);
-		linestream.ignore();
+		linestream.ignore();//ignore the :
 		linestream>>num;
-		linestream.ignore();
-		int edge;
+		linestream.ignore();//ignore the :
+		int edge;//the articles referring to this article
 		while(linestream>>edge){
 			assert(ref.insertEdge(vertex,edge)==true);
 		}
-		ref.calref();
+		ref.calref();//calculate the referrence number of every article
+		//ref.output();//print the graph
 	}
-
-	//construct the inverted-index hash table
-	return 0;
 }
+

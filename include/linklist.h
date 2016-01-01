@@ -29,6 +29,8 @@ public:
 	LinkNode<T> *gethead(){return first;}
 	void insert(T x);
 	void output();
+	void partition(LinkNode<T> *start,LinkNode<T> *end);
+	void sort();
 private:
 	LinkNode<T> *first;
 };

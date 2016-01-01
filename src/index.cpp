@@ -32,9 +32,7 @@ void HashTable<E>::addpage(string key,E newpage){
 	invertedindex<E> newword(key,newpage);
 	int hashval=hashfunc(key);
 	if(table[hashval].chain.search(newword)!=NULL){
-		//if(table[hashval].chain.search(newword)->data.page.search(newpage)==NULL){
 			table[hashval].chain.search(newword)->data.page.insert(newpage);
-		//}
 	}
 	else{
 		table[hashval].chain.insert(newword);

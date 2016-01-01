@@ -53,9 +53,9 @@ LinkNode<T> *LinkList<T>::search(T x){
 //insert an element in the list
 template<class T>
 void LinkList<T>::insert(T x){
-	LinkNode<T> *p=new LinkNode<T>(x);
-	p->link=first->link;
-	first->link=p;
+		LinkNode<T> *p=new LinkNode<T>(x);
+		p->link=first->link;
+		first->link=p;
 }
 
 template<class T>
@@ -66,4 +66,31 @@ void LinkList<T>::output(){
 		p=p->link;
 	}
 	cout<<endl;
+}
+
+template<class T>
+void LinkList<T>::partition(LinkNode<T> *start,LinkNode<T> *end){
+	if(start==end)
+		return;
+	T pivot=start->data;
+	LinkNode<T> *p=start;
+	LinkNode<T> *q=start->link;
+	while(q!=end){
+		if(q->data<pivot){
+			T swap=q->data;
+			q->data=p->link->data;
+			p->link->data=swap;
+			p=p->link;
+		}
+		q=q->link;
+	}
+	start->data=p->data;
+	p->data=pivot;
+	partition(start,p);
+	partition(p->link,end);
+}
+
+template<class T>
+void LinkList<T>::sort(){
+	partition(first->link,NULL);
 }
