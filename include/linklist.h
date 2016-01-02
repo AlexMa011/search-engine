@@ -30,9 +30,10 @@ public:
 	LinkNode<T> *search(T x);
 	LinkNode<T> *gethead(){return first;}
 	void insert(T x);
-	void output();
 	void partition(LinkNode<T> *start,LinkNode<T> *end);
 	void sort();
+	template<class S>
+	friend ostream &operator<<(ostream &out,LinkList<S> &L);
 private:
 	LinkNode<T> *first;
 };
@@ -88,20 +89,11 @@ LinkNode<T> *LinkList<T>::search(T x){
 //insert an element in the list
 template<class T>
 void LinkList<T>::insert(T x){
-		LinkNode<T> *p=new LinkNode<T>(x);
-		p->link=first->link;
-		first->link=p;
+	LinkNode<T> *p=new LinkNode<T>(x);
+	p->link=first->link;
+	first->link=p;
 }
 
-template<class T>
-void LinkList<T>::output(){
-	LinkNode<T> *p=first->link;
-	while(p!=NULL){
-		cout<<p->data<<" ";
-		p=p->link;
-	}
-	cout<<endl;
-}
 
 template<class T>
 void LinkList<T>::partition(LinkNode<T> *start,LinkNode<T> *end){
@@ -111,7 +103,7 @@ void LinkList<T>::partition(LinkNode<T> *start,LinkNode<T> *end){
 	LinkNode<T> *p=start;
 	LinkNode<T> *q=start->link;
 	while(q!=end){
-		if(q->data<pivot){
+		if(q->data>pivot){
 			T swap=q->data;
 			q->data=p->link->data;
 			p->link->data=swap;
@@ -128,6 +120,18 @@ void LinkList<T>::partition(LinkNode<T> *start,LinkNode<T> *end){
 template<class T>
 void LinkList<T>::sort(){
 	partition(first->link,NULL);
+}
+
+template<class S>
+ostream & operator<<(ostream &out,LinkList<S> &L){  
+	LinkNode<S> *p=L.first->link;
+	out<<" ";
+	while(p!=NULL){
+		out<<p->data<<" ";
+		p=p->link;
+	}
+	out<<endl;
+	return out;
 }
 
 #endif

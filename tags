@@ -1,0 +1,93 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BUILDDIR	Makefile	/^BUILDDIR := build$/;"	m
+CC	Makefile	/^CC := g++ #the compiler$/;"	m
+CFLAGS	Makefile	/^CFLAGS := -g # -Wall$/;"	m
+EdgesNumber	include/graph.h	/^	int EdgesNumber;$/;"	m	class:Graph
+Graph	include/graph.h	/^class Graph{$/;"	c
+Graph	src/graph.cpp	/^Graph::Graph(int sz){$/;"	f	class:Graph
+HashTable	include/hashtable.h	/^HashTable::HashTable(int d,int sz){$/;"	f	class:HashTable
+HashTable	include/hashtable.h	/^class HashTable{$/;"	c
+INC	Makefile	/^INC := -I include$/;"	m
+Length	include/linklist.h	/^int LinkList<T>::Length(){$/;"	f	class:LinkList
+LinkList	include/linklist.h	/^	LinkList(){first=new LinkNode<T>;}$/;"	f	class:LinkList
+LinkList	include/linklist.h	/^	LinkList(const T&x){first=new LinkNode<T>(x);}$/;"	f	class:LinkList
+LinkList	include/linklist.h	/^LinkList<T>::LinkList(LinkList<T> &L){$/;"	f	class:LinkList
+LinkList	include/linklist.h	/^class LinkList{$/;"	c
+LinkNode	include/linklist.h	/^	LinkNode(LinkNode<T> *ptr=NULL){link=ptr;}$/;"	f	struct:LinkNode
+LinkNode	include/linklist.h	/^	LinkNode(const T& item,LinkNode<T> *ptr=NULL)$/;"	f	struct:LinkNode
+LinkNode	include/linklist.h	/^struct LinkNode{$/;"	s
+NodeTable	include/graph.h	/^	vertex *NodeTable;$/;"	m	class:Graph
+NumofEdges	include/graph.h	/^	int NumofEdges(){return EdgesNumber;}$/;"	f	class:Graph
+NumofVertices	include/graph.h	/^	int NumofVertices(){return VerticesNumber;}$/;"	f	class:Graph
+OBJECTS	Makefile	/^OBJECTS := $(patsubst $(SRCDIR)\/%,$(BUILDDIR)\/%,$(SOURCES:.$(SRCEXT)=.o))$/;"	m
+SOURCES	Makefile	/^SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))$/;"	m
+SRCDIR	Makefile	/^SRCDIR := src$/;"	m
+SRCEXT	Makefile	/^SRCEXT := cpp$/;"	m
+TARGET	Makefile	/^TARGET := bin\/main$/;"	m
+VerticesNumber	include/graph.h	/^	int VerticesNumber;$/;"	m	class:Graph
+__GRAPH_H__	include/graph.h	2;"	d
+__HASHTABLE_H__	include/hashtable.h	2;"	d
+__INVERTEDINDEX_H__	include/invertedindex.h	2;"	d
+__LINKLIST_H__	include/linklist.h	2;"	d
+addpage	include/hashtable.h	/^void HashTable::addpage(string key,locinfo newpage){$/;"	f	class:HashTable
+calref	src/graph.cpp	/^void Graph::calref(){$/;"	f	class:Graph
+chain	include/hashtable.h	/^	LinkList< invertedindex > chain;$/;"	m	struct:slot
+connected	include/graph.h	/^	LinkList<int> connected;\/\/the edges connected to the vertex$/;"	m	struct:vertex
+content	include/hashtable.h	/^	int content;$/;"	m	struct:slot
+data	include/graph.h	/^	int data;\/\/store the reference number of a article$/;"	m	struct:vertex
+data	include/linklist.h	/^	T data;$/;"	m	struct:LinkNode
+divisor	include/hashtable.h	/^	int divisor;$/;"	m	class:HashTable
+first	include/linklist.h	/^	LinkNode<T> *first;$/;"	m	class:LinkList
+gethead	include/linklist.h	/^	LinkNode<T> *gethead(){return first;}$/;"	f	class:LinkList
+getvalue	include/graph.h	/^	int getvalue(int i){return (i>=0 && i<VerticesNumber)?NodeTable[i].data:0;}\/\/read the value of some vertex$/;"	f	class:Graph
+graph_init	src/graph_init.cpp	/^Graph graph_init(){$/;"	f
+hashfunc	include/hashtable.h	/^int HashTable::hashfunc(string key){$/;"	f	class:HashTable
+hashtable_init	src/hashtable_init.cpp	/^void hashtable_init(Graph& ref){$/;"	f
+insert	include/linklist.h	/^void LinkList<T>::insert(T x){$/;"	f	class:LinkList
+insertEdge	src/graph.cpp	/^bool Graph::insertEdge(int v1,int v2){$/;"	f	class:Graph
+insertVertex	src/graph.cpp	/^bool Graph::insertVertex(int vertex){$/;"	f	class:Graph
+invertedindex	include/invertedindex.h	/^	invertedindex(){page=LinkList<locinfo>();}$/;"	f	class:invertedindex
+invertedindex	include/invertedindex.h	/^	invertedindex(string word):key(word){page=LinkList<locinfo>();}$/;"	f	class:invertedindex
+invertedindex	include/invertedindex.h	/^	invertedindex(string word,locinfo newpage):key(word){page=LinkList<locinfo>(newpage);}$/;"	f	class:invertedindex
+invertedindex	include/invertedindex.h	/^class invertedindex{$/;"	c
+key	include/invertedindex.h	/^	string key;$/;"	m	class:invertedindex
+link	include/linklist.h	/^	LinkNode<T> *link;$/;"	m	struct:LinkNode
+locinfo	include/invertedindex.h	/^	locinfo(){};$/;"	f	struct:locinfo
+locinfo	include/invertedindex.h	/^	locinfo(int vertexnumg,int refnumg):vertexnum(vertexnumg),refnum(refnumg){}$/;"	f	struct:locinfo
+locinfo	include/invertedindex.h	/^struct locinfo{$/;"	s
+main	src/main.cpp	/^int main(){$/;"	f
+main	test/test.cpp	/^int main(){$/;"	f
+makeempty	include/linklist.h	/^void LinkList<T>::makeempty(){$/;"	f	class:LinkList
+maxVertices	include/graph.h	/^	int maxVertices;$/;"	m	class:Graph
+maxVertices	src/graph_init.cpp	/^const int maxVertices=20000;$/;"	v
+operator <	include/invertedindex.h	/^	bool operator<(locinfo &L){$/;"	f	struct:locinfo
+operator <<	include/hashtable.h	/^ostream& operator<<(ostream& out,HashTable &L){$/;"	f
+operator <<	include/invertedindex.h	/^	friend ostream &operator<<(ostream &out,invertedindex &L){$/;"	f	class:invertedindex
+operator <<	include/invertedindex.h	/^	friend ostream &operator<<(ostream &out,locinfo &L){$/;"	f	struct:locinfo
+operator <<	include/linklist.h	/^ostream & operator<<(ostream &out,LinkList<S> &L){  $/;"	f
+operator ==	include/invertedindex.h	/^	bool operator==(invertedindex &L){$/;"	f	class:invertedindex
+operator >	include/invertedindex.h	/^	bool operator>(locinfo &L){$/;"	f	struct:locinfo
+output	src/graph.cpp	/^void Graph::output(){$/;"	f	class:Graph
+page	include/invertedindex.h	/^	LinkList<locinfo> page;$/;"	m	class:invertedindex
+partition	include/linklist.h	/^void LinkList<T>::partition(LinkNode<T> *start,LinkNode<T> *end){$/;"	f	class:LinkList
+rank	include/hashtable.h	/^void HashTable::rank(){$/;"	f	class:HashTable
+refnum	include/invertedindex.h	/^	int refnum;\/\/the referrence number$/;"	m	struct:locinfo
+retrival	src/retrival.cpp	/^void retrival(){$/;"	f
+search	include/hashtable.h	/^LinkNode<locinfo> *HashTable::search(string key){$/;"	f	class:HashTable
+search	include/linklist.h	/^LinkNode<T> *LinkList<T>::search(T x){$/;"	f	class:LinkList
+slot	include/hashtable.h	/^struct slot{$/;"	s
+sort	include/linklist.h	/^void LinkList<T>::sort(){$/;"	f	class:LinkList
+table	include/hashtable.h	/^	slot *table;$/;"	m	class:HashTable
+tablesize	include/hashtable.h	/^	int tablesize;$/;"	m	class:HashTable
+vertex	include/graph.h	/^struct vertex{$/;"	s
+vertexnum	include/invertedindex.h	/^	int vertexnum;\/\/the serial number$/;"	m	struct:locinfo
+word_modified	src/hashtable_init.cpp	/^void word_modified(string &s){$/;"	f
+words_modified	src/hashtable_init.cpp	/^void words_modified(string &s){$/;"	f
+~Graph	src/graph.cpp	/^Graph::~Graph(){$/;"	f	class:Graph
+~HashTable	include/hashtable.h	/^HashTable::~HashTable(){$/;"	f	class:HashTable
+~LinkList	include/linklist.h	/^	~LinkList(){makeempty();}$/;"	f	class:LinkList

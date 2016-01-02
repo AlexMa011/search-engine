@@ -3,18 +3,44 @@
 #include<sstream>
 #include<cstring>
 #include<cassert>
+#include"hashtable.h"
 #include"graph.h"
-#include"index.h"
 
 using namespace std;
 
-extern Graph ref;
+void words_modified(string &s){
+	for(int i=0;i<s.length();i++){
+		if(s[i]>='A' && s[i]<='Z')
+			s[i]=s[i]-'A'+'a';
+		else if(s[i]>='a' && s[i]<= 'z')
+			continue;
+		else if(s[i]>='0' && s[i]<='9')
+			continue;
+		else
+			s[i]=' ';
+	}
+}
 
-void hashtable_init(){
-	ofstream interesting("haha.txt");
+void word_modified(string &s){
+	for(int i=0;i<s.length();i++){
+		if(s[i]>='A' && s[i]<='Z')
+			s[i]=s[i]-'A'+'a';
+		else if(s[i]>='a' && s[i]<= 'z')
+			continue;
+		else if(s[i]>='0' && s[i]<='9')
+			continue;
+		else{
+			s.erase(i,1);
+			i--;
+		}
+	}
+}
+
+void hashtable_init(Graph& ref){
+	ofstream interesting("doc/haha.txt");
 	//construct the inverted-index hash table
-	fstream doc("documents.txt");
-	HashTable<edgeelement> index(19997,20000);
+	fstream doc("doc/documents.txt");
+	HashTable index(19997,20000);
 	string serial;//the serial number of the article
 	string title;//the title of the article
 	string abstract;//the abstract of the article
@@ -29,21 +55,31 @@ void hashtable_init(){
 		int serialnum;
 		serialstream>>serialnum;
 		int refnum=ref.getvalue(serialnum);
-		edgeelement article(serialnum,refnum);
+		locinfo article(serialnum,refnum);
 		stringstream titlestream(title);
 		stringstream abstractstream(abstract);
-		string word;
-		titlestream>>word;//ignore the word "title"
-		while(titlestream>>word){
-			interesting<<word<<" ";
-			index.addpage(word,article);
+		string words;
+		titlestream>>words;//ignore the word "title"
+		while(titlestream>>words){
+			words_modified(words);
+			stringstream wordstream(words);
+			string word;
+			while(wordstream>>word){
+				word_modified(word);
+				index.addpage(word,article);
+			}
 		}
-		interesting<<endl;
-		abstractstream>>word;//ignore the word "abstract"
-		while(abstractstream>>word){
-			interesting<<word<<" ";
-			index.addpage(word,article);
+		abstractstream>>words;//ignore the word "abstract"
+		while(abstractstream>>words){	
+			words_modified(words);
+			stringstream wordstream(words);
+			string word;
+			while(wordstream>>word){
+				word_modified(word);
+				index.addpage(word,article);
+			}
 		}
-		interesting<<endl;
 	}
+	index.rank();
+	interesting<<index;
 }

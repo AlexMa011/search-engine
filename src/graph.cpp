@@ -44,6 +44,6 @@ void Graph::calref(){
 void Graph::output(){
 	for(int i=1;i<=VerticesNumber;i++){
 		cout<<i<<":"<<NodeTable[i].data<<":";
-		NodeTable[i].connected.output();
+		cout<<NodeTable[i].connected;
 	}
 }

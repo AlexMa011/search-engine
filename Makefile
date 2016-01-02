@@ -27,9 +27,14 @@ clean:
 
 # Tests
 test:
-	$(CC) $(CFLAGS) test/test.cpp $(INC)  -o bin/test
+	$(CC) $(CFLAGS) test/test.cpp src/graph.cpp src/graph_init.cpp   $(INC)  -o bin/test
+	bin/test
+
+#src/hashtable_init.cpp
+run:
+	$(TARGET)
 
 
-.PHONY: clean
+.PHONY: clean test run
 
 

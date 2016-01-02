@@ -4,15 +4,16 @@
 #include<cstring>
 #include<cassert>
 #include"graph.h"
+#include"hashtable.h"
 
 using namespace std;
 
 const int maxVertices=20000;
 
 
-void graph_init(){
+Graph graph_init(){
 	//calculate the reference number of every article
-	fstream link("link.txt");
+	fstream link("doc/link.txt");
 	Graph ref(maxVertices);
 	string line;//store every line in "link.txt"
 	//construct the reference graph
@@ -31,8 +32,9 @@ void graph_init(){
 		while(linestream>>edge){
 			assert(ref.insertEdge(vertex,edge)==true);
 		}
-		ref.calref();//calculate the referrence number of every article
-		//ref.output();//print the graph
 	}
+	ref.calref();//calculate the referrence number of every article
+	ref.output();//print the graph
+	return ref;
 }
 
