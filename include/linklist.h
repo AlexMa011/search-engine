@@ -21,35 +21,40 @@ struct LinkNode{
 template<class T>
 class LinkList{
 public:
-	LinkList(){first=new LinkNode<T>;}
-	LinkList(const T&x){first=new LinkNode<T>(x);}
-	LinkList(LinkList<T> &L);//copy constructor function
+	LinkList(){first=new LinkNode<T>;rear=first;}
+	LinkList(const T&x){first=new LinkNode<T>(x);rear=first;}
+	LinkList(LinkList<T> const &L);//copy constructor function
 	~LinkList(){makeempty();}
 	void makeempty();
 	int Length();
 	LinkNode<T> *search(T x);
-	LinkNode<T> *gethead(){return first;}
+	LinkNode<T> *gethead() const{return first;}
 	void insert(T x);
+	void insert_from_rear(T x);
 	void partition(LinkNode<T> *start,LinkNode<T> *end);
 	void sort();
+	LinkList<T>& operator=(LinkList<T> const &L);
 	template<class S>
 	friend ostream &operator<<(ostream &out,LinkList<S> &L);
 private:
-	LinkNode<T> *first;
+	LinkNode<T> *first,*rear;
 };
 
 
 //copy constrcutior function
 template<class T>
-LinkList<T>::LinkList(LinkList<T> &L){
+LinkList<T>::LinkList(LinkList<T> const &L){
 	LinkNode<T> *srcptr=L.gethead()->link;
 	LinkNode<T> *destptr=new LinkNode<T>;
+	first=destptr;
 	while(srcptr!=NULL){
 		destptr->link=new LinkNode<T>(srcptr->data);
 		destptr=destptr->link;
 		srcptr=srcptr->link;
 	}
-	first=destptr;
+	rear=first;
+	while(rear->link!=NULL)
+		rear=rear->link;
 }
 
 //delete the whole list
@@ -96,6 +101,14 @@ void LinkList<T>::insert(T x){
 
 
 template<class T>
+void LinkList<T>::insert_from_rear(T x){
+	while(rear->link!=NULL)
+		rear=rear->link;
+	LinkNode<T> *p=new LinkNode<T>(x);
+	rear->link=p;
+}
+
+template<class T>
 void LinkList<T>::partition(LinkNode<T> *start,LinkNode<T> *end){
 	if(start==end)
 		return;
@@ -120,6 +133,19 @@ void LinkList<T>::partition(LinkNode<T> *start,LinkNode<T> *end){
 template<class T>
 void LinkList<T>::sort(){
 	partition(first->link,NULL);
+}
+
+template<class T>
+LinkList<T>& LinkList<T>::operator=(LinkList<T> const &L){
+	LinkNode<T> *srcptr=L.gethead()->link;
+	LinkNode<T> *destptr=new LinkNode<T>;
+	first=destptr;
+	while(srcptr!=NULL){
+		destptr->link=new LinkNode<T>(srcptr->data);
+		destptr=destptr->link;
+		srcptr=srcptr->link;
+	}
+	return *this;
 }
 
 template<class S>

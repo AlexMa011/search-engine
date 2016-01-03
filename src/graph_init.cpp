@@ -34,7 +34,6 @@ Graph graph_init(){
 		}
 	}
 	ref.calref();//calculate the referrence number of every article
-	ref.output();//print the graph
 	return ref;
 }
 

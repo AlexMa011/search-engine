@@ -2,45 +2,19 @@
 #include<fstream>
 #include<sstream>
 #include<cstring>
-#include<cassert>
 #include"hashtable.h"
 #include"graph.h"
 
 using namespace std;
 
-void words_modified(string &s){
-	for(int i=0;i<s.length();i++){
-		if(s[i]>='A' && s[i]<='Z')
-			s[i]=s[i]-'A'+'a';
-		else if(s[i]>='a' && s[i]<= 'z')
-			continue;
-		else if(s[i]>='0' && s[i]<='9')
-			continue;
-		else
-			s[i]=' ';
-	}
-}
+void words_modified(string &);
 
-void word_modified(string &s){
-	for(int i=0;i<s.length();i++){
-		if(s[i]>='A' && s[i]<='Z')
-			s[i]=s[i]-'A'+'a';
-		else if(s[i]>='a' && s[i]<= 'z')
-			continue;
-		else if(s[i]>='0' && s[i]<='9')
-			continue;
-		else{
-			s.erase(i,1);
-			i--;
-		}
-	}
-}
+void word_modified(string &);
 
-void hashtable_init(Graph& ref){
+void hashtable_init(Graph& ref,HashTable& index){
 	ofstream interesting("doc/haha.txt");
 	//construct the inverted-index hash table
 	fstream doc("doc/documents.txt");
-	HashTable index(19997,20000);
 	string serial;//the serial number of the article
 	string title;//the title of the article
 	string abstract;//the abstract of the article
@@ -54,6 +28,7 @@ void hashtable_init(Graph& ref){
 		serialstream.ignore();//ignore the two #
 		int serialnum;
 		serialstream>>serialnum;
+		ref.addtitle(title,serialnum);
 		int refnum=ref.getvalue(serialnum);
 		locinfo article(serialnum,refnum);
 		stringstream titlestream(title);
@@ -82,4 +57,32 @@ void hashtable_init(Graph& ref){
 	}
 	index.rank();
 	interesting<<index;
+}
+
+void words_modified(string &s){
+	for(int i=0;i<s.length();i++){
+		if(s[i]>='A' && s[i]<='Z')
+			s[i]=s[i]-'A'+'a';
+		else if(s[i]>='a' && s[i]<= 'z')
+			continue;
+		else if(s[i]>='0' && s[i]<='9')
+			continue;
+		else
+			s[i]=' ';
+	}
+}
+
+void word_modified(string &s){
+	for(int i=0;i<s.length();i++){
+		if(s[i]>='A' && s[i]<='Z')
+			s[i]=s[i]-'A'+'a';
+		else if(s[i]>='a' && s[i]<= 'z')
+			continue;
+		else if(s[i]>='0' && s[i]<='9')
+			continue;
+		else{
+			s.erase(i,1);
+			i--;
+		}
+	}
 }

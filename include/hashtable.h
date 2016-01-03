@@ -19,7 +19,7 @@ public:
 	~HashTable();
 	int hashfunc(string key);
 	void addpage(string key,locinfo newpage);
-	LinkNode<locinfo> *search(string key);
+	LinkList<locinfo> search(string key);
 	void rank();
 	friend ostream& operator<<(ostream& out,HashTable &L);
 private:

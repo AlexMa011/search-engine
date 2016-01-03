@@ -35,6 +35,10 @@ bool Graph::insertEdge(int v1,int v2){
 	return false;
 }
 
+void Graph::addtitle(string titleg,int vertexnum){
+	NodeTable[vertexnum].title=titleg;
+}
+
 void Graph::calref(){
 	for(int i=1;i<=VerticesNumber;i++){
 		NodeTable[i].data=NodeTable[i].connected.Length();

@@ -13,13 +13,23 @@ struct locinfo{
 	locinfo(){}
 	locinfo(int vertexnumg,int refnumg):vertexnum(vertexnumg),refnum(refnumg){}
 	bool operator<(locinfo &L){
-		return (refnum<L.refnum)?true:false;
+		if(refnum<L.refnum)
+			return true;
+		else if(refnum==L.refnum && vertexnum>L.vertexnum)
+			return true;
+		else
+			return false;
 	}
 	bool operator>(locinfo &L){
-		return (refnum>L.refnum)?true:false;
+		if(refnum>L.refnum)
+			return true;
+		else if(refnum==L.refnum && vertexnum<L.vertexnum)
+			return true;
+		else
+			return false;
 	}
 	friend ostream &operator<<(ostream &out,locinfo &L){
-		return out<<L.vertexnum<<" ";
+		return out<<L.vertexnum<<"("<<L.refnum<<"): "<<"Title: "<<" ";
 	}
 };
 

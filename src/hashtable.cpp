@@ -40,14 +40,15 @@ void HashTable::addpage(string key,locinfo newpage){
 	}
 };
 
-LinkNode<locinfo> *HashTable::search(string key){
+LinkList<locinfo> HashTable::search(string key){
+	LinkList<locinfo> nulllist;
 	invertedindex newword(key);
 	int hashval=hashfunc(key);
 	if(table[hashval].chain.search(newword)!=NULL){
-		return table[hashval].chain.search(newword)->data.page.gethead();
+		return table[hashval].chain.search(newword)->data.page;
 	}
 	else{
-		return NULL;
+		return nulllist;
 	}
 }
 
