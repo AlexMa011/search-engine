@@ -23,14 +23,13 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 
 clean:
 	@echo " Cleaning..."; 
-	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
+	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET:w)
 
 # Tests
 test:
 	$(CC) $(CFLAGS) test/test.cpp src/graph.cpp src/graph_init.cpp   $(INC)  -o bin/test
 	bin/test
 
-#src/hashtable_init.cpp
 run:
 	$(TARGET)
 

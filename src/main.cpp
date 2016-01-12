@@ -4,9 +4,9 @@
 	
 using namespace std;
 
-Graph graph_init();
-void hashtable_init(Graph&,HashTable&);
-void retrieval(Graph&,HashTable&);
+Graph graph_init();//build the reference relationship graph
+void hashtable_init(Graph&,HashTable&);//build the hashtable for inverted index
+void retrieval(Graph&,HashTable&);//the input treatment
 
 int main(){
 	Graph ref=graph_init();

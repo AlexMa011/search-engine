@@ -1,0 +1,8 @@
+The include folders contain the defition for mainly 5 classes:linklist,graph,hashtable,invertedindex and stack
+
+The src folders contain 3 main parts of the program:
+1.initialize the graph:build the reference graph
+2.initialize the hashtable:build the revertedindex and fill them in hashtable
+3.retrival:the thing about input, output and search keys
+
+If you want to run the program,just tap make to compile and then tap make run to run the program

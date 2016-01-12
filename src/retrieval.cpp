@@ -17,20 +17,20 @@ LinkList<locinfo> deletelist(LinkList<locinfo>,LinkList<locinfo>);//delete the s
 
 void retrieval(Graph &ref,HashTable &index){
 	string input;
-	string input_words[maxwords];
-	string delete_words[maxwords];
+	string input_words[maxwords];//words which are searched
+	string delete_words[maxwords];//words the result shouldn't contain
 	string inputline;
 	while(getline(cin,inputline)){
 		stringstream inputstream(inputline);
-		string or_symbol("OR");
+		string or_symbol("OR");//identify the OR operation
 		int i=0,j=0;
 		while(inputstream>>input){
-			if(input[0]!='-'){
+			if(input[0]!='-'){//identify the NOT operation
 				input_words[i]=input;
 				i++;
 			}
 			else{
-				input.erase(0,1);
+				input.erase(0,1);//delete the "-"
 				delete_words[j]=input;
 				j++;
 			}
@@ -38,9 +38,9 @@ void retrieval(Graph &ref,HashTable &index){
 		int input_size=i;
 		int delete_size=j;
 		LinkList<locinfo> output;
-		stack< LinkList<locinfo> > liststack;
+		stack< LinkList<locinfo> > liststack;//contain the list of articles shouldreturn
 		for(i=0;i<input_size;i++){
-			if(input_words[i].compare(or_symbol)==0){
+			if(input_words[i].compare(or_symbol)==0){//union the two articles around OR and put the union result into the stack
 				LinkList<locinfo> newlist;
 				liststack.pop(newlist);
 				newlist=unionlist(newlist,index.search(input_words[i+1]));
@@ -53,18 +53,24 @@ void retrieval(Graph &ref,HashTable &index){
 			}
 		}
 		liststack.pop(output);
-		while(liststack.IsEmpty()!=true){
+		while(liststack.IsEmpty()!=true){//intersect all the articles in the stack
 			LinkList<locinfo> newlist;
 			liststack.pop(newlist);
 			output=intersectlist(output,newlist);
 		}
-		for(j=0;j<delete_size;j++){
+		for(j=0;j<delete_size;j++){//delete articles from the origin result
 			LinkList<locinfo> dellist=index.search(delete_words[j]);
 			output=deletelist(output,dellist);
 		}
 		LinkNode<locinfo> *p=output.gethead()->link;
-		while(p!=NULL){
+		if(p==NULL){
+			cout<<"No articles qualified!"<<endl;
+			cout<<endl;
+			continue;
+		}
+		while(p!=NULL){//print the output
 			cout<<p->data<<ref.gettitle(p->data.vertexnum)<<endl;
+			cout<<endl;
 			p=p->link;
 		}
 	}

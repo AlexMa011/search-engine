@@ -1,0 +1,11 @@
+./src/graph.cpp 
+./src/graph_init.cpp 
+./src/hashtable.cpp 
+./src/hashtable_init.cpp 
+./src/retrival.cpp 
+./src/main.cpp
+./include/graph.h 
+./include/hashtable.h 
+./include/invertedindex.h 
+./include/linklist.h 
+./include/stack.h

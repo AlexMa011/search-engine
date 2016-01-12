@@ -29,7 +29,7 @@ struct locinfo{
 			return false;
 	}
 	friend ostream &operator<<(ostream &out,locinfo &L){
-		return out<<L.vertexnum<<"("<<L.refnum<<"): "<<"Title: "<<" ";
+		return out<<L.vertexnum<<":cited by "<<L.refnum<<" articles: "<<endl;;
 	}
 };
 
